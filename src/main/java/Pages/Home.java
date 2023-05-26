@@ -1,5 +1,6 @@
 package Pages;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -7,20 +8,28 @@ import org.openqa.selenium.WebDriver.Timeouts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import Util.Url;
+
+
 public class Home extends BasePage {
 	
-	static String url = "azf";
 	
 	public Home(WebDriver driver) {
 		super(driver);
-		driver.get("https://ds-sce.sce-fpm.com/");
+		driver.get(Url.base);
 	}
 	
 	public Login clickSignIn() {
 		WebElement button = this.findElements("text", "Sign in", null).get(0);
 		this.click(button);
+		this.sleep(2);
 		return new Login(this.driver);
 
+	}
+	
+	public boolean verifyLogin() {
+		List<WebElement> button = this.findElementsByTagAndText("div", "Log Out", null);
+		return button.size() != 0;
 	}
 	
 	
@@ -35,6 +44,14 @@ public class Home extends BasePage {
 		this.click(button);
 		return new Feedback(this.driver);
 	}
+	
+	public Feedback clickFeedback() {
+		WebElement button = this.findElementsByTagAndText("a", "Feedback", null).get(0);
+		this.click(button);
+		this.sleep(5);
+		return new Feedback(this.driver);
+	}
+	
 	
 	
 
@@ -53,5 +70,6 @@ public class Home extends BasePage {
 		//login.login("tovel","pass");
 
 	}
-
 }
+
+

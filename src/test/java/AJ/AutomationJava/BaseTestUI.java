@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 
 import Pages.Home;
 import Pages.Login;
+import Util.Messages;
+import Util.Url;
 import Util.User;
 import Util.User.UserType;
 import io.qameta.allure.Allure;
@@ -32,7 +34,7 @@ public class BaseTestUI {
 	        // Extract any relevant information from the test annotation
         String testName = testAnnotation.testName();
         int invocationCount = testAnnotation.invocationCount();
-        System.out.println(testName+" "+invocationCount);
+        //System.out.println(testName+" "+invocationCount);
         Allure.step("open driver");
 
 	}
@@ -46,7 +48,7 @@ public class BaseTestUI {
         Allure.step("close driver");
 	}
 	
-	public void login(Home page, UserType type) {
+	public Login login(Home page, UserType type) {
 		Login loginPage = page.clickSignIn();
 		User user;
 		try {
@@ -56,6 +58,7 @@ public class BaseTestUI {
 			// TODO Auto-generated catch block
 			fail(e.getMessage());
 		}
+		return loginPage;
 	}
 	
 	

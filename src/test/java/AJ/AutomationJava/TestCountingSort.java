@@ -37,13 +37,5 @@ public class TestCountingSort extends BaseTestUI {
 //        assertEquals(true, true);
     }
 	
-	@Test
-	public void myTestMethod() {
-		WebDriver driver = driverThreadLocal.get();
-		driver.get("https://google.com/");
-		 System.out.println("myTestMethod");
-
-        assertEquals(true, true);
-    }
 	
 }
