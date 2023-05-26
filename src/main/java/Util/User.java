@@ -7,12 +7,15 @@ public class User {
 	
 	public enum UserType {
 		  REGULAR,
-		  LECTURER
+		  LECTURER,
+		  LECTURER2FA
 		}
 	
 	
 	static private User user = null;
 	static private User lecturer = null;
+	static private User lecturer2FA = null;
+
 	public String password;
 	public String email;
 	
@@ -22,17 +25,26 @@ public class User {
 	}
 	
 	public static User getUser(UserType role) throws Exception {
-		if (role == UserType.LECTURER) {
+		switch(role) {
+		case LECTURER:
 			if (lecturer == null) {
 				lecturer = initUser("lecturer");
 			}
 			return User.lecturer;
-		}
-		else {
+		
+		case REGULAR :
 			if (user == null) {
 				user = initUser("regular");
 			}
 			return user;
+		
+		case LECTURER2FA:
+			if (lecturer2FA == null) {
+				lecturer2FA = initUser("lecturer2FA");
+			}
+			return User.lecturer2FA;
+		default:
+            throw new IllegalArgumentException("Invalid user type: " + role);
 		}
 	}
 	
@@ -49,7 +61,6 @@ public class User {
             email = (String) userJsonObject.get("email");
             password = (String) userJsonObject.get("password");
             // Save regularUser data as needed
-            System.out.println("User Data: " + email + ", " + password);
             return new User(email, password);
 
         } catch (Exception e) {

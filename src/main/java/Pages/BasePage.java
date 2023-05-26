@@ -7,9 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import Util.Url;
+
 
 public abstract class BasePage {
 	WebDriver driver;
+	static Url url = new Url();
+
 	
 	public BasePage(WebDriver driver){
 		this.driver = driver;
@@ -22,6 +26,10 @@ public abstract class BasePage {
 	}
 	public void closeDriver() {
 		this.driver.close();;
+	}
+	
+	public void refresh() {
+		this.driver.navigate().refresh();
 	}
 	
 	public String getUrl() {
@@ -71,7 +79,7 @@ public abstract class BasePage {
 	public List<WebElement> findElementsByAttribute(String attributeName,String attributeValue, WebElement parentElement) {
 		String xpath = "//*[@"+ attributeName+ "='"+ attributeValue + "']";
 		if (parentElement!=null)
-			return parentElement.findElements(By.xpath(xpath));
+			return parentElement.findElements(By.xpath("."+xpath));
 		return driver.findElements(By.xpath(xpath));
 	}
 	
