@@ -23,6 +23,7 @@ public abstract class BasePage {
 	
 	public void navigateTo(String url) {
 		this.driver.get(url);
+		this.sleep(3);
 	}
 	public void closeDriver() {
 		this.driver.close();;
@@ -72,7 +73,7 @@ public abstract class BasePage {
 	public List<WebElement> findElementsByTagAndText(String tag,String text, WebElement parentElement) {
 		String xpath = "//"+ tag +"[text()='"+ text + "']";
 		if (parentElement!=null)
-			return parentElement.findElements(By.xpath(xpath));
+			return parentElement.findElements(By.xpath("."+ xpath));
 		return driver.findElements(By.xpath(xpath));
 	}
 	

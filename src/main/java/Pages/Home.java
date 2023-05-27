@@ -19,6 +19,8 @@ public class Home extends BasePage {
 		driver.get(Url.base);
 	}
 	
+	///// HEADER /////
+	
 	public Login clickSignIn() {
 		WebElement button = this.findElements("text", "Sign in", null).get(0);
 		this.click(button);
@@ -45,6 +47,9 @@ public class Home extends BasePage {
 		return new Feedback(this.driver);
 	}
 	
+	
+	//// LECTURER OPTIONS ON THE HEADER /////
+	
 	public Feedback clickFeedback() {
 		WebElement button = this.findElementsByTagAndText("a", "Feedback", null).get(0);
 		this.click(button);
@@ -52,9 +57,27 @@ public class Home extends BasePage {
 		return new Feedback(this.driver);
 	}
 	
+	public Feedback clickReports() {
+		WebElement button = this.findElementsByTagAndText("a", "Reports", null).get(0);
+		this.click(button);
+		this.sleep(5);
+		return new Feedback(this.driver);
+	}
 	
 	
+	//// NAVIGATE BY URL /////
+	
+	public GeneralReport goToGeneralReports() {
+		this.navigateTo(Url.generalReports);	
+		return new GeneralReport(this.driver);
+	}
 
+	public void goToAlgorithmReports() {
+		this.navigateTo(Url.algorithmReports);	
+		//TODO: ADD RETURN
+	}
+	
+	
 	public static void main(String[] args) {
 		WebDriver driver=new ChromeDriver();
 		
