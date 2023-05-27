@@ -2,8 +2,12 @@ package AJ.AutomationJava;
 
 import static org.testng.Assert.fail;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.Test;
@@ -27,7 +31,17 @@ public class BaseTestUI {
 	@BeforeMethod(alwaysRun=true)
 	public void setup(ITestContext context, ITestResult result) {
 		 System.out.println("setup");
-		 WebDriver driver=new ChromeDriver();
+		
+		// Configure ChromeOptions with desired download directory
+        ChromeOptions options = new ChromeOptions();
+        String baseDirectory = System.getProperty("user.dir");
+        String downloadDir = baseDirectory + "\\src\\main\\reasorces" ;
+        
+        Map<String, Object> prefs = new HashMap<String, Object>(); 
+        prefs.put("download.default_directory", downloadDir);
+        options.setExperimentalOption("prefs", prefs);
+        WebDriver driver=new ChromeDriver(options);
+
 		 driverThreadLocal.set(driver);
 		 driver.manage().window().maximize();
 		 Test testAnnotation = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(Test.class);

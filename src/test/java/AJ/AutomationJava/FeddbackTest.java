@@ -32,6 +32,8 @@ public class FeddbackTest extends BaseTestUI {
 		Allure.step(Messages.submitFeedback);
 
 	}
+	
+	
     @Test(dependsOnMethods = { "addFeedback"})
 	public void deleteFeedback() {
 		WebDriver driver = this.driverThreadLocal.get();
@@ -46,9 +48,6 @@ public class FeddbackTest extends BaseTestUI {
 		feedbackPage.clickDelete();
 		Assert.assertEquals(numOfFeedbacks - 1, feedbackPage.getNumberOfFeedbacks());
 		Allure.step("delete feedback");
-
-
-		
 
     }
 
