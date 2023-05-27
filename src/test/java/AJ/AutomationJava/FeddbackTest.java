@@ -48,7 +48,6 @@ public class FeddbackTest extends BaseTestUI {
 		feedbackPage.clickDelete();
 		Assert.assertEquals(numOfFeedbacks - 1, feedbackPage.getNumberOfFeedbacks());
 		Allure.step("delete feedback");
-
     }
 
 	
