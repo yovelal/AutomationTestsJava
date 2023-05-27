@@ -40,4 +40,4 @@ allure-results*
 target/
 test-output/
 .idea
-resources/*
+src/main/resources
